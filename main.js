@@ -40,7 +40,7 @@ var isAnagram = function (s, t) {
 return true
 }
 
-console.log(isAnagram('aacc', 'ccac'));
+// console.log(isAnagram('aacc', 'ccac'));
 //s t
 
 
@@ -50,3 +50,40 @@ var twoSum = function(nums, target) {
 };
 
 
+var groupAnagrams = function (strs) {
+  for (let i = 0;i<strs.length;i++) {
+    console.log(iterator);
+    for (let j = 0; j < strs.length; j++) {
+      // const element = array[index];
+let news = [];
+      if(strs[j].includes(strs[i])){
+// put the element in the array
+news.push(strs[i].split(','))
+      }
+      
+    }
+  }
+
+};
+
+
+let m = 'kamal'.split('')
+let shuffle = 'makal'.split('')
+let count = 0
+for(let i=0;i<m.length;i++){
+  console.log(i);
+  // console.log(m[i]);
+// for (let j = 0; j < shuffle.length; j++) {
+//   // console.log('letters of m',m[i]);
+//     if(m[i]==shuffle[j]){
+//       // console.log(m[i]);
+//       // console.log(shuffle[j]);
+//       count++
+//       shuffle.splice(0,i)
+//       m.splice(0,j)
+//     }
+// }
+}
+
+// console.log(count);
+// console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])); 
