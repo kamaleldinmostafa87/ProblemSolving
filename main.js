@@ -51,39 +51,47 @@ var twoSum = function(nums, target) {
 
 
 var groupAnagrams = function (strs) {
+  let newMap = new Map();
   for (let i = 0;i<strs.length;i++) {
-    console.log(iterator);
-    for (let j = 0; j < strs.length; j++) {
-      // const element = array[index];
-let news = [];
-      if(strs[j].includes(strs[i])){
-// put the element in the array
-news.push(strs[i].split(','))
+      const ordered = strs[i].split('').sort().join('');//aet
+      // push the origin instead of the ordered
+      if(newMap.has(ordered)){ //search about keys
+        newMap.set(ordered,[...newMap.get(ordered),strs[i]])// get the old values an
+      }else{
+        newMap.set(ordered, [strs[i]])
       }
-      
-    }
   }
-
-};
-
-
-let m = 'kamal'.split('')
-let shuffle = 'makal'.split('')
-let count = 0
-for(let i=0;i<m.length;i++){
-  console.log(i);
-  // console.log(m[i]);
-// for (let j = 0; j < shuffle.length; j++) {
-//   // console.log('letters of m',m[i]);
-//     if(m[i]==shuffle[j]){
-//       // console.log(m[i]);
-//       // console.log(shuffle[j]);
-//       count++
-//       shuffle.splice(0,i)
-//       m.splice(0,j)
-//     }
-// }
+ return (Array.from(newMap.values()));
 }
 
-// console.log(count);
 // console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])); 
+
+const topKFrequent = function(nums, k) {
+  let newMap = new Map()
+
+  for (let i = 0; i < nums.length; i++) {
+if(newMap.has(nums[i])){
+  newMap.set(nums[i], [...newMap.get(nums[i]), nums[i]])
+
+
+}else {
+  newMap.set(nums[i], [nums[i]])
+}
+  }
+
+
+  // loop in this map and get the most length
+  // const rowLength =  Array.from(newMap.values()).sort((value)=>value.length)
+  // get the k   
+// const orderedLengthOfArray =  [...newMap.entries()].sort((value)=>value[1].localeCompare(value[1]))
+
+console.log('new mOP',[...newMap.entries()]).sort()
+  // console.log(orderedLengthOfArray);
+
+  return newMap;
+}
+
+console.log(topKFrequent([1,2,2,3,3,2,3], 2));
+// Input: nums = [1,2,2,3,3,3], k = 2
+
+// Output: [2,3]
