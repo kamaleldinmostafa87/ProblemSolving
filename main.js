@@ -79,19 +79,22 @@ if(newMap.has(nums[i])){
 }
   }
 
+let sortedEntries = [...newMap.entries()].sort((a, b) => b[1].length - a[1].length);
 
-  // loop in this map and get the most length
-  // const rowLength =  Array.from(newMap.values()).sort((value)=>value.length)
-  // get the k   
-// const orderedLengthOfArray =  [...newMap.entries()].sort((value)=>value[1].localeCompare(value[1]))
-
-console.log('new mOP',[...newMap.entries()]).sort()
-  // console.log(orderedLengthOfArray);
-
-  return newMap;
+const ll = sortedEntries.slice(0,k)
+let arr = []
+for (const [key,value] of ll) {
+  arr.push(value)
+}
+const finallyArr = new Map(arr)
+return Array.from(finallyArr.values())
+  
 }
 
-console.log(topKFrequent([1,2,2,3,3,2,3], 2));
+console.log(topKFrequent([1,2,2,3,3,2,3], 1));
+
+
+
 // Input: nums = [1,2,2,3,3,3], k = 2
 
 // Output: [2,3]
