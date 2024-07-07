@@ -1,29 +1,59 @@
-import './style.css';
-import javascriptLogo from './javascript.svg';
-import viteLogo from '/vite.svg';
-import { setupCounter } from './counter.js';
+// import './style.css';
+// import javascriptLogo from './javascript.svg';
+// import viteLogo from '/vite.svg';
+// import { setupCounter } from './counter.js';
 
 // document.querySelector('#app').innerHTML = `
-  
+
 // `;
 
 var isAnagram = function (s, t) {
-  const lenghtOfT = t.length;
+  let lengthOfT = t.length;
   const lengthOfS = s.length;
-  let newArrangedStr = ''
-  // get each char from t and push it in an array
-  for(let i = 0;i<lengthOfS;i++){
-    for(let j = 0; j<lenghtOfT; j++){
-      if(t[i]==s[j]){
-        newArrangedStr +=t[j]
-      }
-    }
-
+  let count = 0;
+  if (s.length !== t.length) return false;
+  let counterS = new Map();
+  //console.log(counterS);
+  for (const char of s) {
+    counterS.set(char, counterS.get(char) + 1)
   }
-  console.log("newa arranged str ",newArrangedStr)
+  for (let i = 0; i < lengthOfT; i++) {
+    if (t.includes(s[i])) {
+      count++;
+    }
+  };
+  return count === lengthOfT;
+}
 
+// console.log(isAnagram("aacc", "ccac"))
+isAnagram("aaccs", "ccacs")
+
+
+var groupAnagrams = function (strs) {
+  for (const iterator of strs) {
+    console.log(iterator);
+  }
 };
 
-// t = rac = >, s = car
-console.log(isAnagram('tar', 'car'));
-console.log('kamal')
+// console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])); 
+
+//Stack Problem
+
+var isValid = function (s) {
+  let stack = [];
+  for (let item of s) {
+    if (item === ")" && stack[stack.length - 1] === "("
+      || item === "}" && stack[stack.length - 1] === "{"
+      || item === "]" && stack[stack.length - 1] === "["
+      && stack.length > 0) {
+      stack.pop(item);
+    } else {
+      stack.push(item);
+    }
+  }
+
+  return stack.length === 0;
+};
+
+
+console.log(isValid("({})"))
