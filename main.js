@@ -103,24 +103,20 @@ var evalRPN = function(tokens) {
 // Output: 9
 // Explanation: ((2 + 1) * 3) = 9
   let stack = [];
-  console.log(tokens.length);
 
   for(let i=0;i<tokens.length;i++){
-    if(tokens[i] != "/" || tokens[i] != "*" ||
-    tokens[i] != "+" || tokens[i] != "-") {
-     stack.push(Number(tokens[i]))
+    if(tokens[i] !== "/" && tokens[i] !== "*" && tokens[i] !== "+" && tokens[i] !== "-") {
+      stack.push(Number(tokens[i])); 
     }
     else {
     let increasePop = 0;
-    // let poped1;
-    // let poped2;
+   
 let poppedArr =[];
     while(increasePop != 1 && stack.length !=0 ){
     // poped1 = stack.pop()
     poppedArr.push(stack.pop());
     increasePop++;
   }
-      // poped2 = stack.pop()
       let calculated;
       calculated = eval(`${poppedArr[0]} ${tokens[i]} ${poppedArr[1]}`);
       //after calc push
