@@ -98,35 +98,39 @@ const topKFrequent = function (nums, k) {
 // Input: nums = [1,2,2,3,3,3], k = 2
 
 // Output: [2,3]
-var evalRPN = function(tokens) {
 // Input: tokens = ["2","1","+","3","*"]
 // Output: 9
 // Explanation: ((2 + 1) * 3) = 9
-  let stack = [];
 
+// ["4","13","5","/","+"] 4 13 5 
+var evalRPN = function(tokens) {
+
+  let stack = [];
   for(let i=0;i<tokens.length;i++){
     if(tokens[i] !== "/" && tokens[i] !== "*" && tokens[i] !== "+" && tokens[i] !== "-") {
       stack.push(Number(tokens[i])); 
     }
     else {
-    let increasePop = 0;
-   
-let poppedArr =[];
-    while(increasePop != 1 && stack.length !=0 ){
-    // poped1 = stack.pop()
-    poppedArr.push(stack.pop());
-    increasePop++;
+    let poppedArr =[];
+    //we will check first if stack is empty
+    if(stack.length > 1){
+      poppedArr.push(stack.pop());
+      poppedArr.push(stack.pop())
+    // 4 13 5 .. pop: 4 13 .. pop: 4 
+  }else if(stack.length === 1) {
+    return stack[0]
   }
-      let calculated;
-      calculated = eval(`${poppedArr[0]} ${tokens[i]} ${poppedArr[1]}`);
-      //after calc push
-      if(stack.length == 0) {
+  
+  console.log('popped numbers from array',poppedArr);
+      let calculated;//4 5 6 length = 3  last two eles => 3 - 2    3 - 1
+      calculated = eval(`${poppedArr[poppedArr - 2]} ${tokens[i]} ${poppedArr[poppedArr - 1]}`);
+      // console.log(poppeArr);
         stack.push(calculated) //6 and repeat
-        increasePop = 0
-      }
-      if(i == tokens.length - 1) return stack[0]
-   }
+          
+    }
   }    
+  // return  
 };
 
-console.log(evalRPN(["2","1","+","3","*"]));
+console.log(evalRPN(["4","13","5","/","+"]));
+// console.log(evalRPN(["2","1","+","3","*"]));
