@@ -132,5 +132,41 @@ var evalRPN = function(tokens) {
   // return  
 };
 
-console.log(evalRPN(["4","13","5","/","+"]));
+// console.log(evalRPN(["4","13","5","/","+"]));
 // console.log(evalRPN(["2","1","+","3","*"]));
+
+
+// palindrom
+var isPalindrome = function(s) {
+    // split the array
+    // console.log(s.split(''));
+    console.log('origin arr',s);
+    let tempArr;
+tempArr =s.split('').filter(item=>item !== ' ')
+console.log(tempArr);
+
+    let splitedArr =[]
+    for(let i = 0;i<tempArr.length/2 ;i++){
+      // push the half of length of array
+      splitedArr.push(tempArr[i]) 
+    }
+
+    // for(let i = tempArr.length - 1;i>tempArr.length ;i--){
+    //   // push the half of length of array
+    //   splitedArr.push(tempArr[i]) 
+    // }
+
+    console.log('splited array',splitedArr);
+// reverse this splited array 
+let reversedArr
+reversedArr = splitedArr.reverse()
+
+
+// if reversed equel to the second part of 
+// if(reversedArr === )
+console.log('reversed half of length of string',reversedArr);
+
+};
+
+
+console.log(isPalindrome("race a car"));
