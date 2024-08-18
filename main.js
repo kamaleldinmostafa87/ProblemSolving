@@ -136,37 +136,50 @@ var evalRPN = function(tokens) {
 // console.log(evalRPN(["2","1","+","3","*"]));
 
 
-// palindrom
-var isPalindrome = function(s) {
-    // split the array
-    // console.log(s.split(''));
-    console.log('origin arr',s);
-    let tempArr;
-tempArr =s.split('').filter(item=>item !== ' ')
-console.log(tempArr);
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function (s) {
+  // split the array
+  // console.log(s.split(''));
+//   console.log('origin arr', s);
+  let firstPart;
+  let secondPart;
+//   console.log('original length', s.length);
 
-    let splitedArr =[]
-    for(let i = 0;i<tempArr.length/2 ;i++){
-      // push the half of length of array
-      splitedArr.push(tempArr[i]) 
-    }
+  firstPart = s.split('').filter(item => item !== ' ' && ',' && ':')
+  secondPart = s.split('').filter(item => item !== ' ' && ',' && ':')
+  if (firstPart.length % 2 !== 0 && secondPart.length % 2 !== 0) return flase;
 
-    // for(let i = tempArr.length - 1;i>tempArr.length ;i--){
-    //   // push the half of length of array
-    //   splitedArr.push(tempArr[i]) 
-    // }
+  let SplitedFirstPart = []
+  for (let i = 0; i <= firstPart.length / 2; i++) {
+    // push the half of length of array
+    SplitedFirstPart.push(firstPart[i])
+  }
 
-    console.log('splited array',splitedArr);
-// reverse this splited array 
-let reversedArr
-reversedArr = splitedArr.reverse()
+// console.log('first part', SplitedFirstPart);
 
 
-// if reversed equel to the second part of 
-// if(reversedArr === )
-console.log('reversed half of length of string',reversedArr);
+  // reverse this splited array 
+  let reversedFirstPart
+  reversedFirstPart = SplitedFirstPart.reverse()
+  //compare the reversed string of first half of array to the second part of the array
+  // take the second part of the array 
 
+
+  // 1  2  3  4    length=4
+  // start from  i= length - 1.. i >=0
+  let splitedSecondPart = []
+  for (let i = secondPart.length / 2; i >= 0; i--) {
+    // push the half of length of array
+    splitedSecondPart.push(secondPart[i])
+  }
+
+//   console.log('second part', splitedSecondPart);
+//   console.log('reversed first part', reversedFirstPart.reverse());
+
+//   console.log('reversed second part', splitedSecondPart.reverse());
+
+  if (JSON.stringify(splitedSecondPart.reverse()) === JSON.stringify(reversedFirstPart.reverse())) return true
 };
-
-
-console.log(isPalindrome("race a car"));
