@@ -103,32 +103,32 @@ const topKFrequent = function (nums, k) {
 // Explanation: ((2 + 1) * 3) = 9
 
 // ["4","13","5","/","+"] 4 13 5 
-var evalRPN = function(tokens) {
+var evalRPN = function (tokens) {
 
   let stack = [];
-  for(let i=0;i<tokens.length;i++){
-    if(tokens[i] !== "/" && tokens[i] !== "*" && tokens[i] !== "+" && tokens[i] !== "-") {
-      stack.push(Number(tokens[i])); 
+  for (let i = 0; i < tokens.length; i++) {
+    if (tokens[i] !== "/" && tokens[i] !== "*" && tokens[i] !== "+" && tokens[i] !== "-") {
+      stack.push(Number(tokens[i]));
     }
     else {
-    let poppedArr =[];
-    //we will check first if stack is empty
-    if(stack.length > 1){
-      poppedArr.push(stack.pop());
-      poppedArr.push(stack.pop())
-    // 4 13 5 .. pop: 4 13 .. pop: 4 
-  }else if(stack.length === 1) {
-    return stack[0]
-  }
-  
-  console.log('popped numbers from array',poppedArr);
+      let poppedArr = [];
+      //we will check first if stack is empty
+      if (stack.length > 1) {
+        poppedArr.push(stack.pop());
+        poppedArr.push(stack.pop())
+        // 4 13 5 .. pop: 4 13 .. pop: 4 
+      } else if (stack.length === 1) {
+        return stack[0]
+      }
+
+      console.log('popped numbers from array', poppedArr);
       let calculated;//4 5 6 length = 3  last two eles => 3 - 2    3 - 1
       calculated = eval(`${poppedArr[poppedArr - 2]} ${tokens[i]} ${poppedArr[poppedArr - 1]}`);
       // console.log(poppeArr);
-        stack.push(calculated) //6 and repeat
-          
+      stack.push(calculated) //6 and repeat
+
     }
-  }    
+  }
   // return  
 };
 
@@ -143,10 +143,10 @@ var evalRPN = function(tokens) {
 var isPalindrome = function (s) {
   // split the array
   // console.log(s.split(''));
-//   console.log('origin arr', s);
+  //   console.log('origin arr', s);
   let firstPart;
   let secondPart;
-//   console.log('original length', s.length);
+  //   console.log('original length', s.length);
 
   firstPart = s.split('').filter(item => item !== ' ' && ',' && ':')
   secondPart = s.split('').filter(item => item !== ' ' && ',' && ':')
@@ -158,7 +158,7 @@ var isPalindrome = function (s) {
     SplitedFirstPart.push(firstPart[i])
   }
 
-// console.log('first part', SplitedFirstPart);
+  // console.log('first part', SplitedFirstPart);
 
 
   // reverse this splited array 
@@ -176,10 +176,76 @@ var isPalindrome = function (s) {
     splitedSecondPart.push(secondPart[i])
   }
 
-//   console.log('second part', splitedSecondPart);
-//   console.log('reversed first part', reversedFirstPart.reverse());
+  //   console.log('second part', splitedSecondPart);
+  //   console.log('reversed first part', reversedFirstPart.reverse());
 
-//   console.log('reversed second part', splitedSecondPart.reverse());
+  //   console.log('reversed second part', splitedSecondPart.reverse());
 
   if (JSON.stringify(splitedSecondPart.reverse()) === JSON.stringify(reversedFirstPart.reverse())) return true
 };
+
+var isValid = function (s) {
+  let stack = [];
+  for (let item of s) {
+    if (item === ")" && stack[stack.length - 1] === "("
+      || item === "}" && stack[stack.length - 1] === "{"
+      || item === "]" && stack[stack.length - 1] === "["
+      && stack.length > 0) {
+      stack.pop(item);
+    } else {
+      stack.push(item);
+    }
+  }
+
+  return stack.length === 0;
+};
+
+
+
+// palindrom
+var isPalindrome = function (s) {
+  // split the array
+  // console.log(s.split(''));
+  console.log('origin arr', s);
+  let firstPart;
+  let secondPart;
+  console.log('original length', s.length);
+
+  firstPart = s.split('').filter(item => item !== ' ' && ',' && ':')
+  secondPart = s.split('').filter(item => item !== ' ' && ',' && ':')
+  if (firstPart.length % 2 !== 0 && secondPart.length % 2 !== 0) return false;
+
+  let SplitedFirstPart = []
+  for (let i = 0; i <= firstPart.length / 2; i++) {
+    // push the half of length of array
+    SplitedFirstPart.push(firstPart[i])
+  }
+
+  console.log('first part', SplitedFirstPart);
+
+  // reverse this splited array 
+  let reversedFirstPart
+  reversedFirstPart = SplitedFirstPart.reverse()
+  //compare the reversed string of first half of array to the second part of the array
+  // take the second part of the array 
+
+  // 1  2  3  4    length=4
+  // start from  i= length - 1.. i >=0
+  let splitedSecondPart = []
+  for (let i = secondPart.length / 2; i >= 0; i--) {
+    // push the half of length of array
+    splitedSecondPart.push(secondPart[i])
+  }
+
+  console.log('second part', splitedSecondPart);
+  console.log('reversed first part', reversedFirstPart.reverse());
+
+  console.log('reversed second part', splitedSecondPart.reverse());
+
+  if (JSON.stringify(splitedSecondPart.reverse()) === JSON.stringify(reversedFirstPart.reverse())) return true
+
+
+};
+
+
+console.log(isPalindrome("race a car"));
