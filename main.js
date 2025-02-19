@@ -404,11 +404,8 @@ var compress = function (chars) {
     .split("");
 };
 
-// console.log(compress(["a", "a", "b", "b", "c", "c", "c"]));
+console.log(compress(["a", "a", "b", "b", "c", "c", "c"]));
 // console.log(compress(["a"]));
-console.log(
-  compress(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"])
-);
 
 var isSubsequence = function (s, t) {
   // letters in different places
@@ -425,7 +422,3 @@ var isSubsequence = function (s, t) {
   }
   return j === s.length;
 };
-
-console.log(isSubsequence("abc", "ahbgdc"));
-// s = "abc", t = "ahbgdc"
-// "axc", t = "ahbgdc"
